@@ -1,0 +1,11 @@
+<georef>
+  <srs>
+    <id>EPSG:3857</id>
+  </srs>
+  <origin>
+    <x>-14452309.372978143</x>
+    <y>20030513.869987581</y>
+  </origin>
+  <cell-width>27519.533254422844</cell-width>
+  <cell-height>-27519.533254422866</cell-height>
+</georef>
