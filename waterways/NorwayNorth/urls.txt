@@ -1,0 +1,2 @@
+http://download.geofabrik.de/europe/norway-latest.osm.pbf
+http://download.geofabrik.de/europe/finland-latest.osm.pbf
