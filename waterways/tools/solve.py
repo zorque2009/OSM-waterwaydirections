@@ -6,9 +6,6 @@ import webbrowser
 import os
 
 
-# ------------------- REPLACE <YOUR FOLDER> WINDOWS STYLE (WITH \ AS SEPARATOR) -------------------
-# ------------------- REPLACE <YOUR FOLDER UNIX> UNIX STYLE (WITH / AS SEPARATOR) -------------------
-
 nodes = []
 systems = defaultdict(list)
 tally = []
@@ -20,23 +17,23 @@ print now.strftime("%X"), "Loading OSM..."
 
 systems["xoastline"]=[]
 
-bluelist = open("<YOUR FOLDER UNIX>/waterways/bluelist.txt", "r")       #Load bluelist --- node IDs manually added as coastline, i.e. where a river exits the bounding box
+bluelist = open("bluelist.txt", "r")       #Load bluelist --- node IDs manually added as coastline, i.e. where a river exits the bounding box
 bluelist = bluelist.read().splitlines()
 
 for x in bluelist:                                
     systems["xoastline"].append(x)                                      #'x' to allow alphabetic sorting later on
     
-cyanlist = open("<YOUR FOLDER UNIX>/waterways/cyanlist.txt", "r")       #Load cyanlist --- node IDs manually declared "OK", i.e. parts of rivers outside the coastline, to be ignored by the script
+cyanlist = open("cyanlist.txt", "r")       #Load cyanlist --- node IDs manually declared "OK", i.e. parts of rivers outside the coastline, to be ignored by the script
 cyanlist = cyanlist.read().splitlines()
 
 for x in cyanlist:                                
     systems["cyan"].append(x)
 
-size = os.path.getsize("<YOUR FOLDER UNIX>/waterways/tmp/waterways.osm")
+size = os.path.getsize("tmp/waterways.osm")
 size = round(size/(1024*1024*1024),1)
 print size, "GB"
 
-with open("<YOUR FOLDER UNIX>/waterways/tmp/waterways.osm", "rt") as f: #Load osm
+with open("tmp/waterways.osm", "rt") as f: #Load osm
     tree = cElementTree.parse(f)
 
 irrigation = 0
@@ -226,7 +223,7 @@ print "total", total
 now = datetime.now()
 print now.strftime("%X"), "Writing html..."
 
-g = open("<YOUR FOLDER UNIX>/waterways/tmp/rivers.html",'wb')                #html output page
+g = open("tmp/rivers.html",'wb')                #html output page
 
 header = """
 <html>
@@ -299,7 +296,7 @@ for x in redlist:                                                       #all red
     if x[0]==2:
         stubsquery += query
 
-filename = "<YOUR FOLDER>\waterways\stubs.html"                         #stubs = single waterways pointing away from the sea
+filename = "stubs.html"                         #stubs = single waterways pointing away from the sea
 outfile = open(filename, 'w')
 stubsquery = "(" + stubsquery + ");out geom;"
 outfile.write(stubsquery) 
@@ -315,7 +312,7 @@ table = """<td><a href='https://overpass-api.de/api/status' target='_blank'>Stat
 g.write(table)
 g.close()
 
-with open(r'rivers - stats.html', "r") as stats:                        #nice stats html
+with open(r'tmp/rivers-stats.html', "r") as stats:                        #nice stats html
     page = stats.read()
 
 
@@ -336,16 +333,16 @@ page += """<table>
     <th id="cyan" width=" """ + str(cyanperc) + """%"> """ + str(cyan) + """</th>
   </tr>
 </table>"""
-with open(r'rivers - stats.html', "w") as stats:
+with open(r'tmp/rivers-stats.html', "w") as stats:
     stats.write(page)
 
-webbrowser.open('rivers - stats.html')
-webbrowser.open('rivers.html')
+webbrowser.open('file://' + os.path.realpath('tmp/rivers-stats.html'))
+webbrowser.open('file://' + os.path.realpath('tmp/rivers.html'))
 
 now = datetime.now()
 print now.strftime("%X"), "Writing osm..."                              #osm output file to draw nice pic in Maperitive
 
-tree.write("waterways.osm")
+tree.write("tmp/waterways.osm")
 
 now = datetime.now()
 print now.strftime("%X"), "End..." 
