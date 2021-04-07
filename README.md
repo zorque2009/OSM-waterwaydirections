@@ -4,15 +4,8 @@ A script to detect unconnected and reversed waterways in the OSM database.
 Please follow the steps below to make it work, and bear with me, this whole project is beyond my actual coding capabilities, but it runs on my system.
 
 ## 1. Make it run
-```
-\NorwayNorth\NorwayNorth.bat
-\tools\prepare.py
-\tools\solve.py
-```
-Replace <YOUR FOLDER> Windows style (with \ as separator)
-Replace <YOUR FOLDER UNIX> Unix style (with / as separator)
-  
-The script is looking in \tools for links to 
+
+The script is looking in \tools for 
 - wget
 - osmconvert
 - osmfilter
