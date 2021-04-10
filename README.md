@@ -16,12 +16,7 @@ It's best to copy the sample folder for each region you want to investigate.
 ```
 \NorwayNorth\urls.txt
 ```
-Add the download urls from geofabrik.de of the desired region(s), one per line.  There is no limit to the number of files, but too large an output file will crash the system.
-Copy the file to the \tmp folder and run \tools\prepare.py
-This will create a file tmp\prepare.txt 
-You need to remove the ``` ' ``` from the .txt file.
-
-Copy the content of tmp\prepare.txt into your .bat file between the highlighted lines. Add crop command if needed (see sample file or osmconvert documentation)
+Add the download urls from geofabrik.de of the desired region(s), one per line.  Add a bounding box to each line if needed: <WEST>,<SOUTH>,<EAST>,<NORTH>. There is no limit to the number of files, but too large an output file will crash the system. 
 
 ## 3. Run the script
 run the .bat file
