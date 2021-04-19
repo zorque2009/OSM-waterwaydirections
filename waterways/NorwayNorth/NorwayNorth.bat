@@ -1,4 +1,4 @@
-REM 20210409
+REM 20210419
 
 cd..
 cd tmp
@@ -18,7 +18,7 @@ tools\osmfilter.exe tmp\rivers.o5m --keep= --keep-ways="natural=coastline waterw
 tools\solve.py
 
 cd tmp
-copy /y "rivers - stats.html" %~dp0"rivers-stats.html"
+copy /y "rivers-stats.html" %~dp0"rivers-stats.html"
 copy /y "rivers.html" %~dp0"rivers.html"
 
 cd..
